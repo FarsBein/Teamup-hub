@@ -11,15 +11,15 @@ const Feed = () => {
             'field':'Gaming Development',
             'title':'Shooting game',
             'description':'need a team to build multiplayer shooting game using c# and unity',
-            'tools':['Javascript', 'C++', 'C#', 'Unity']
+            'tools':['JavaScript', 'C++', 'C#', 'Unity']
         },
         {
             'profileImage':pepe, 
             'name':'Roy zimmakes',
             'field':'Software Development',
-            'title':'desktop management app',
+            'title':'Desktop management app',
             'description':'I want to build asdhajskhd dajshdkj akjshdkjahjkdh jhdakjhdjk',
-            'tools':['Javascript', 'C', 'Google']
+            'tools':['JavaScript', 'C', 'Google']
         },
         {
             'profileImage':pepe, 
@@ -27,7 +27,7 @@ const Feed = () => {
             'field':'Website Development',
             'title':'Website for kids',
             'description':'need help in building a website dasjd aklsjdkj dkajslkdj',
-            'tools':['Javascript']
+            'tools':['JavaScript']
         },
         {
             'profileImage':pepe, 
@@ -70,9 +70,11 @@ const Feed = () => {
                                     <ReactBootstrap.Container>
                                     <ReactBootstrap.Row>
                                             <ReactBootstrap.Button variant="outline-warning">save</ReactBootstrap.Button>
-                                            {/* <div className='tools'>
-                                                {card['tools']}
-                                            </div>                                             */}
+                                            {/* 
+                                                <div className='tools'>
+                                                    {card['tools']}
+                                                </div> 
+                                            */}
                                     </ReactBootstrap.Row>
                                     </ReactBootstrap.Container>                                        
                                 </ReactBootstrap.Card.Body>
@@ -80,7 +82,7 @@ const Feed = () => {
                                             <div className='tools'>
                                                 {
                                                     card['tools'].map((tool,i) => (
-                                                        <ReactBootstrap.Badge style={{'padding':'4px', 'margin':'0 3px'}} variant="dark">
+                                                        <ReactBootstrap.Badge style={{'padding':'5px 10px', 'margin':'0 3px'}} pill variant="dark">
                                                             {tool}
                                                         </ReactBootstrap.Badge>
                                                         )

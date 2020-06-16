@@ -11,7 +11,7 @@
 }
 
 .cards {
-  padding: 10px 0 0 0;
+  padding: 24px 0 0 0;
 }
 
 .reactBootstrap-card {
@@ -34,7 +34,6 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  margin: 0 10px;
   font-size: 15px;
 }
 
@@ -64,3 +63,20 @@
   box-shadow: 0 0 5px gray;
 }
 
+/* authentication ---------------- */
+
+.auth-container {
+  width: 15px;
+  margin: 120px auto;
+  max-width: 1000px;
+  min-width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  box-shadow: 0 0 3px gray;
+  padding: 25px;
+  border-radius: 6px;
+}

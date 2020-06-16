@@ -46,10 +46,7 @@ const Post = () => {
                         Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent
                     </ReactBootStrap.Card.Text>
                     <ReactBootStrap.Card body>Javascript, C++, C#, Unity</ReactBootStrap.Card>
-                    <>
-                        <ReactBootStrap.Button style={{'margin':'13px'}} variant="light">Chat</ReactBootStrap.Button> 
-                        <ReactBootStrap.Button style={{'margin':'13px'}} variant="dark">Chat</ReactBootStrap.Button>
-                    </>
+                    <ReactBootStrap.Button style={{'margin':'13px'}} variant="dark">Chat</ReactBootStrap.Button>
                 </ReactBootStrap.Card.Body>
             </ReactBootStrap.Card>
             <ReactBootStrap.Card className={'post-card'}>
