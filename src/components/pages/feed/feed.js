@@ -9,7 +9,7 @@ export default function feed() {
     return (
         <div className={'wrapper'}>
             <div className={'cards-container'}>
-            <div className={'cards'}>
+                <div className={'cards'}>
                 <Link to="/post" style={{ textDecoration: 'none'}}>
                     <ReactBootstrap.Card className='reactBootstrap-card'>
                         <ReactBootstrap.Card.Header as="h5">Featured</ReactBootstrap.Card.Header>
@@ -18,7 +18,7 @@ export default function feed() {
                             <ReactBootstrap.Card.Text>
                                 With supporting text below as a natural lead-in to additional content.
                             </ReactBootstrap.Card.Text>
-                            <ReactBootstrap.Button variant="primary">Go somewhere</ReactBootstrap.Button>
+                            {/* <ReactBootstrap.Button variant="primary">Go somewhere</ReactBootstrap.Button> */}
                         </ReactBootstrap.Card.Body>
                     </ReactBootstrap.Card>                    
                 </Link>
@@ -32,7 +32,6 @@ export default function feed() {
                                 <ReactBootstrap.Card.Text>
                                     With supporting text below as a natural lead-in to additional content.
                                 </ReactBootstrap.Card.Text>
-                                <ReactBootstrap.Button variant="primary">Go somewhere</ReactBootstrap.Button>
                             </ReactBootstrap.Card.Body>
                         </ReactBootstrap.Card>                        
                     </Link>
@@ -46,7 +45,6 @@ export default function feed() {
                                 <ReactBootstrap.Card.Text>
                                     With supporting text below as a natural lead-in to additional content.
                                 </ReactBootstrap.Card.Text>
-                                <ReactBootstrap.Button variant="primary">Go somewhere</ReactBootstrap.Button>
                             </ReactBootstrap.Card.Body>
                         </ReactBootstrap.Card>
                     </Link>

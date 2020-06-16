@@ -9,9 +9,19 @@ export default function Navbar() {
         <div>
             <ReactBootstrap.Navbar bg="dark" variant="dark" expand="lg" className={'navbar'}>
                 {/* <img className={'logo'} src={logo} alt={'logo'} /> */}
-                <ReactBootstrap.Navbar.Brand>
-                    Teamup Hub
+                <ReactBootstrap.Navbar.Brand href="/feed">
+                    <img
+                        src={logo}
+                        width="50"
+                        height="41"
+                        className="d-inline-block align-top"
+                        alt="React Bootstrap logo"
+                        />
+                    <ReactBootstrap.Navbar.Brand>
+                        Teamup Hub
+                    </ReactBootstrap.Navbar.Brand>
                 </ReactBootstrap.Navbar.Brand>
+
                 <ReactBootstrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <ReactBootstrap.Navbar.Collapse id="basic-navbar-nav">
                     <ReactBootstrap.Nav className="mr-auto">
@@ -24,11 +34,9 @@ export default function Navbar() {
                     </ReactBootstrap.NavDropdown>
                     </ReactBootstrap.Nav>
                     <ReactBootstrap.Nav>
-                        <ReactBootstrap.Nav.Link href="#deets">More deets</ReactBootstrap.Nav.Link>
-                        <ReactBootstrap.Nav.Link href="#memes">
-                            Dank memes
-                        </ReactBootstrap.Nav.Link>
-                        </ReactBootstrap.Nav>
+                        <ReactBootstrap.Nav.Link><Link className={'links'} to="/authorization">sign in</Link></ReactBootstrap.Nav.Link>
+                        <ReactBootstrap.Nav.Link><Link className={'links'} to="/authorization">sign out</Link></ReactBootstrap.Nav.Link>
+                    </ReactBootstrap.Nav>
                 </ReactBootstrap.Navbar.Collapse>
             </ReactBootstrap.Navbar>
         </div>
