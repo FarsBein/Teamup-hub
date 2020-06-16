@@ -44,44 +44,44 @@ const Feed = () => {
             <div className={'cards-container'}>
                     {cardsInfo.map((card,index) => (
                         <div className={'cards'} key={index}>
-                            <Link to="/post" style={{ textDecoration: 'none'}}>
-                                <ReactBootstrap.Card className='reactBootstrap-card'>
-                                    <ReactBootstrap.Card.Header as="h5">
-                                        <ReactBootstrap.Container>
-                                            <ReactBootstrap.Row>
-                                                <ReactBootstrap.Image className={'feed-profile-image'} src={card['profileImage']} roundedCircle />
-                                                <ReactBootstrap.Col>
-                                                    <div style={{"fontSize":"15px"}}>
-                                                        {card['name']}
-                                                    </div>  
-                                                    <div style={{"fontSize":"10px"}}>
-                                                        in {card['field']}
-                                                    </div>                                          
-                                                </ReactBootstrap.Col>                      
-                                            </ReactBootstrap.Row>
-                                        </ReactBootstrap.Container>
-                                    </ReactBootstrap.Card.Header>
-                                    <ReactBootstrap.Card.Body>
-                                        <ReactBootstrap.Card.Title>{card['title']}</ReactBootstrap.Card.Title>
-                                        <ReactBootstrap.Card.Text>
-                                            {card['description']}
-                                        </ReactBootstrap.Card.Text>
-                                        <ReactBootstrap.Container>
+                            <ReactBootstrap.Card className='reactBootstrap-card'>
+                                <ReactBootstrap.Card.Header as="h5">
+                                    <ReactBootstrap.Container>
                                         <ReactBootstrap.Row>
-                                                <ReactBootstrap.Button variant="outline-warning">save</ReactBootstrap.Button>
-                                                {/* <div className='tools'>
-                                                    {card['tools']}
-                                                </div>                                             */}
+                                            <ReactBootstrap.Image className={'feed-profile-image'} src={card['profileImage']} roundedCircle />
+                                            <ReactBootstrap.Col>
+                                                <div style={{"fontSize":"15px"}}>
+                                                    {card['name']}
+                                                </div>  
+                                                <div style={{"fontSize":"10px"}}>
+                                                    in {card['field']}
+                                                </div>                                          
+                                            </ReactBootstrap.Col>                      
                                         </ReactBootstrap.Row>
-                                        </ReactBootstrap.Container>                                        
-                                    </ReactBootstrap.Card.Body>
-                                    <ReactBootstrap.Card.Header as="h5">
-                                                <div className='tools'>
-                                                    {card['tools']}
-                                                </div>   
-                                    </ReactBootstrap.Card.Header>
-                                </ReactBootstrap.Card>                    
-                            </Link>
+                                    </ReactBootstrap.Container>
+                                </ReactBootstrap.Card.Header>
+                                <ReactBootstrap.Card.Body>
+                                    <Link to="/post" style={{ 'textDecoration': 'none'}}>
+                                        <ReactBootstrap.Card.Title>{card['title']}</ReactBootstrap.Card.Title>
+                                    </Link>
+                                    <ReactBootstrap.Card.Text>
+                                        {card['description']}
+                                    </ReactBootstrap.Card.Text>
+                                    <ReactBootstrap.Container>
+                                    <ReactBootstrap.Row>
+                                            <ReactBootstrap.Button variant="outline-warning">save</ReactBootstrap.Button>
+                                            {/* <div className='tools'>
+                                                {card['tools']}
+                                            </div>                                             */}
+                                    </ReactBootstrap.Row>
+                                    </ReactBootstrap.Container>                                        
+                                </ReactBootstrap.Card.Body>
+                                <ReactBootstrap.Card.Header as="h5">
+                                            <div className='tools'>
+                                                {card['tools']}
+                                            </div>   
+                                </ReactBootstrap.Card.Header>
+                            </ReactBootstrap.Card>                    
                         </div> 
                     ))} 
             </div>
