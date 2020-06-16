@@ -11,7 +11,7 @@ const Feed = () => {
             'field':'Gaming Development',
             'title':'Shooting game',
             'description':'need a team to build multiplayer shooting game using c# and unity',
-            'tools':'Javascript, C++, C#, Unity'
+            'tools':['Javascript', 'C++', 'C#', 'Unity']
         },
         {
             'profileImage':pepe, 
@@ -19,7 +19,7 @@ const Feed = () => {
             'field':'Software Development',
             'title':'desktop management app',
             'description':'I want to build asdhajskhd dajshdkj akjshdkjahjkdh jhdakjhdjk',
-            'tools':'Javascript, C, Google'
+            'tools':['Javascript', 'C', 'Google']
         },
         {
             'profileImage':pepe, 
@@ -27,7 +27,7 @@ const Feed = () => {
             'field':'Website Development',
             'title':'Website for kids',
             'description':'need help in building a website dasjd aklsjdkj dkajslkdj',
-            'tools':'Javascript'
+            'tools':['Javascript']
         },
         {
             'profileImage':pepe, 
@@ -35,7 +35,7 @@ const Feed = () => {
             'field':'Gaming Development',
             'title':'Shooting game',
             'description':'need a team to build multiplayer shooting game using c# and unity',
-            'tools':''
+            'tools':['C#']
         }
     ])
 
@@ -78,7 +78,14 @@ const Feed = () => {
                                 </ReactBootstrap.Card.Body>
                                 <ReactBootstrap.Card.Header as="h5">
                                             <div className='tools'>
-                                                {card['tools']}
+                                                {
+                                                    card['tools'].map((tool,i) => (
+                                                        <ReactBootstrap.Badge style={{'padding':'4px', 'margin':'0 3px'}} variant="dark">
+                                                            {tool}
+                                                        </ReactBootstrap.Badge>
+                                                        )
+                                                    )
+                                                }
                                             </div>   
                                 </ReactBootstrap.Card.Header>
                             </ReactBootstrap.Card>                    

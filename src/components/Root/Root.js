@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route,Switch} from 'react-router-dom';
-import feed from '../pages/feed/feed.js'
-import post from '../pages/post/post.js'
-import profile from '../pages/profile/profile.js'
-import authorization from '../pages/authorization/auth.js'
+import feed from '../pages/feed/Feed.js'
+import post from '../pages/post/Post.js'
+import profile from '../pages/profile/Profile.js'
+import authorization from '../pages/authorization/Auth.js'
 import Navbar from '../Navbar/Navbar.js';
 
 const Root = () => {
