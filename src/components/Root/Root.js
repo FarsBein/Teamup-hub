@@ -11,10 +11,10 @@ const Root = () => {
         <div>
             <Navbar />
             <Switch>
-                <Route component={post} path='/post' />                
-                <Route component={profile} path='/profile' />                
-                <Route component={authorization} path='/authorization' />                
-                <Route component={feed} path='/' />                
+                <Route name='post' component={post} path='/post' />                
+                <Route name='profile' component={profile} path='/profile' />                
+                <Route name='authorization' component={authorization} path='/authorization' />                
+                <Route name='feed' component={feed} path='/' />                
             </Switch>
         </div>
     )

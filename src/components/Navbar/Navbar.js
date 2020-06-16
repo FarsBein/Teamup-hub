@@ -3,9 +3,8 @@ import * as ReactBootstrap from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.png'
 
-export default function Navbar() {
+const Navbar = () => {
     return (
-
         <div>
             <ReactBootstrap.Navbar bg="dark" variant="dark" expand="lg" className={'navbar'}>
                 {/* <img className={'logo'} src={logo} alt={'logo'} /> */}
@@ -42,3 +41,5 @@ export default function Navbar() {
         </div>
     )
 }
+
+export default Navbar;
