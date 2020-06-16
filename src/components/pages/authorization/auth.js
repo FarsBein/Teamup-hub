@@ -17,9 +17,6 @@ const Auth = () => {
                     <ReactBootStrap.Form.Label>Password</ReactBootStrap.Form.Label>
                     <ReactBootStrap.Form.Control type="password" placeholder="Password" />
                 </ReactBootStrap.Form.Group>
-                <ReactBootStrap.Form.Group controlId="formBasicCheckbox">
-                    <ReactBootStrap.Form.Check type="checkbox" label="Check me out" />
-                </ReactBootStrap.Form.Group>
                 <ReactBootStrap.Button variant="primary" type="submit">
                     Submit
                 </ReactBootStrap.Button>
