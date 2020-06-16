@@ -12,7 +12,7 @@ export default function Navbar() {
                 <ReactBootstrap.Navbar.Brand href="/feed">
                     <img
                         src={logo}
-                        width="50"
+                        width="51"
                         height="41"
                         className="d-inline-block align-top"
                         alt="React Bootstrap logo"
