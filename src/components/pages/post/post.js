@@ -1,5 +1,6 @@
 import React from 'react'
 import * as ReactBootStrap from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 const Post = () => {
     return (
@@ -15,38 +16,12 @@ const Post = () => {
                         HEADING LEVEL 5
                         HEADING LEVEL 6
                         Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing.
-
-                        LISTS
-                        UNORDERED
-                        Dolor pulvinar amet etiam.
-                        Sagittis adipiscing lorem eleifend.
-                        Felis enim feugiat viverra.
-                        ALTERNATE
-                        Dolor pulvinar amet etiam.
-                        Sagittis adipiscing lorem eleifend.
-                        Felis enim feugiat viverra.
-                        ORDERED
-                        Dolor pulvinar sed etiam.
-                        Etiam vel lorem sed amet.
-                        Felis enim feugiat viverra.
-                        Dolor pulvinar magna etiam.
-                        Etiam vel felis at sed viverra.
-                        Felis enim feugiat amet dolore.
-                        Dolor pulvinar lorem etiam.
-                        Etiam vel felis at lorem amet.
-                        Felis enim feugiat viverra.
-                        Dolor pulvinar magna etiam.
-                        Etiam vel felis sed viverra.
-                        DEFINITION
-                        Alpha
-                        Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.
-                        Beta
-                        Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.
-                        Gamma
-                        Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent
+                        vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent
                     </ReactBootStrap.Card.Text>
                     <ReactBootStrap.Card body>Javascript, C++, C#, Unity</ReactBootStrap.Card>
-                    <ReactBootStrap.Button style={{'margin':'13px'}} variant="dark">Chat</ReactBootStrap.Button>
+                    <Link to='/chat'>
+                        <ReactBootStrap.Button style={{'margin':'13px'}} variant="dark">Chat</ReactBootStrap.Button>
+                    </Link>                        
                 </ReactBootStrap.Card.Body>
             </ReactBootStrap.Card>
             <ReactBootStrap.Card className={'post-card'}>

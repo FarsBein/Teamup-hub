@@ -27,7 +27,7 @@
   width: 40px;
   height: auto;
   border-style:solid;
-  border-width: 1px;
+  border-width: 2px;
 }
 
 .tools {
@@ -66,17 +66,45 @@
 /* authentication ---------------- */
 
 .auth-container {
-  width: 15px;
-  margin: 120px auto;
-  max-width: 1000px;
+  margin: 40px auto;
+  max-width: 900px;
   min-width: 350px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .form {
+  box-shadow: 0 0 2px gray;
+  padding: 25px;
+  border-radius: 6px;
+  width: 350px;
+}
+
+.Welcome {
+  font-size: 50px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* create post ------------------ */
+
+.create-post-container {
+  margin: 100px auto;
+  max-width: 800px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-post-form {
+  width: 90%;
+  height: 100%;
   box-shadow: 0 0 3px gray;
   padding: 25px;
   border-radius: 6px;
 }
+

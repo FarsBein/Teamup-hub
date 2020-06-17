@@ -69,7 +69,7 @@ const Feed = () => {
                                     </ReactBootstrap.Card.Text>
                                     <ReactBootstrap.Container>
                                     <ReactBootstrap.Row>
-                                            <ReactBootstrap.Button variant="outline-warning">save</ReactBootstrap.Button>
+                                            <ReactBootstrap.Button variant="warning">save</ReactBootstrap.Button>
                                             {/* 
                                                 <div className='tools'>
                                                     {card['tools']}
