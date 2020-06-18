@@ -67,16 +67,7 @@ const Feed = () => {
                                     <ReactBootstrap.Card.Text>
                                         {card['description']}
                                     </ReactBootstrap.Card.Text>
-                                    <ReactBootstrap.Container>
-                                    <ReactBootstrap.Row>
-                                            <ReactBootstrap.Button variant="warning">save</ReactBootstrap.Button>
-                                            {/* 
-                                                <div className='tools'>
-                                                    {card['tools']}
-                                                </div> 
-                                            */}
-                                    </ReactBootstrap.Row>
-                                    </ReactBootstrap.Container>                                        
+                                    {/* <ReactBootstrap.Button variant="warning">save</ReactBootstrap.Button>  a save button more work will have to be done*/}
                                 </ReactBootstrap.Card.Body>
                                 <ReactBootstrap.Card.Header as="h5">
                                             <div className='tools'>
