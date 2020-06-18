@@ -1,0 +1,35 @@
+.infoBar-container{
+    background: #0aca86;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px 0 20px;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.send-icon {
+    width: 32px;
+}
+
+.input {
+    position: absolute;
+    bottom: 0px; left: 0;
+    width: 100%;
+    padding: 0 10px;
+}
+
+
+/* message ---------------------------- */
+.user-message-container {
+    display: flex;
+    justify-content: right;
+    background: gray;
+}
