@@ -1,17 +1,22 @@
 const express = require('express')
 const socketio = require('socket.io')
-const http = require('http')
+const mongoose = require('mongoose')
 const cors = require('cors')
+require('dotenv').config() //npm dotenv and required for env
 
 const {addUser,removeUser,getUser,getUsersInRoom} = require('./users.js')
 
 const PORT = process.env.PORT || 5000 // for future live server we will use a saved PORT value
 
-const router = require('./router.js')
+const router = require('./router/router.js')
+const userRouter = require('./router/userRouter.js')
 
 const app = express()
-const server = http.createServer(app)
-const io = socketio(server)
+app.use(express.json()) // to parse our javascript code
+app.use(cors())
+
+const server = app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
+const io = socketio(server) // attach the used server with io to receive emit
 
 io.on('connection', (socket)=> {
     socket.on('join', ({ username, room }, callback) => {
@@ -42,8 +47,21 @@ io.on('connection', (socket)=> {
     })
 }) 
 
+
+
+// Mongoose set up
+
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, // to avoid annoying pop ups asking for upgrade
+    useCreateIndex: true
+}, (err) => {
+    if (err) throw err
+    console.log('MongoDB connection is established')
+})
+
+// set up middleware router
+
 app.use(router)
 
-app.use(cors())
-
-server.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
+app.use('/users',userRouter)
