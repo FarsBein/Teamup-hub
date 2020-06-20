@@ -2,6 +2,7 @@ import React from 'react';
 import * as ReactBootstrap from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.png'
+import AuthOption from './AuthOption';
 
 const Navbar = () => {
     return (
@@ -26,6 +27,7 @@ const Navbar = () => {
                     <ReactBootstrap.Nav className="mr-auto">
                     <ReactBootstrap.Nav.Link><Link className={'links'} to="/feed">Feed</Link></ReactBootstrap.Nav.Link>
                     <ReactBootstrap.Nav.Link href="#link"><Link className={'links'} to="/profile">Profile</Link></ReactBootstrap.Nav.Link>
+                    <ReactBootstrap.Nav.Link href="#link"><Link className={'links'} to="/createPost">Create Post</Link></ReactBootstrap.Nav.Link>
                     <ReactBootstrap.NavDropdown title="Catagories" id="basic-nav-dropdown">
                         <ReactBootstrap.NavDropdown.Item>Projects</ReactBootstrap.NavDropdown.Item>
                         <ReactBootstrap.NavDropdown.Item>Gaming</ReactBootstrap.NavDropdown.Item>
@@ -33,8 +35,7 @@ const Navbar = () => {
                     </ReactBootstrap.NavDropdown>
                     </ReactBootstrap.Nav>
                     <ReactBootstrap.Nav>
-                        <ReactBootstrap.Nav.Link><Link className={'links'} to="/authorization">sign in</Link></ReactBootstrap.Nav.Link>
-                        <ReactBootstrap.Nav.Link><Link className={'links'} to="/authorization">sign out</Link></ReactBootstrap.Nav.Link>
+                        <AuthOption />
                     </ReactBootstrap.Nav>
                 </ReactBootstrap.Navbar.Collapse>
             </ReactBootstrap.Navbar>
