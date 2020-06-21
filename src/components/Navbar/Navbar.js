@@ -3,8 +3,12 @@ import * as ReactBootstrap from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.png'
 import AuthOption from './AuthOption';
+import { useContext } from 'react';
+import UserContext from '../context/UserContext';
 
 const Navbar = () => {
+    const {userData} = useContext(UserContext)
+
     return (
         <div>
             <ReactBootstrap.Navbar bg="dark" variant="dark" expand="lg" className={'navbar'}>
@@ -26,8 +30,16 @@ const Navbar = () => {
                 <ReactBootstrap.Navbar.Collapse id="basic-navbar-nav">
                     <ReactBootstrap.Nav className="mr-auto">
                     <ReactBootstrap.Nav.Link><Link className={'links'} to="/feed">Feed</Link></ReactBootstrap.Nav.Link>
-                    <ReactBootstrap.Nav.Link href="#link"><Link className={'links'} to="/profile">Profile</Link></ReactBootstrap.Nav.Link>
-                    <ReactBootstrap.Nav.Link href="#link"><Link className={'links'} to="/createPost">Create Post</Link></ReactBootstrap.Nav.Link>
+
+                    {   
+                        userData.user ? // check for logged in user to show these options
+                        <>
+                            <ReactBootstrap.Nav.Link href="#link"><Link className={'links'} to="/profile">Profile</Link></ReactBootstrap.Nav.Link>
+                            <ReactBootstrap.Nav.Link href="#link"><Link className={'links'} to="/createPost">Create Post</Link></ReactBootstrap.Nav.Link>
+                        </>:
+                        null
+                    }   
+                    
                     <ReactBootstrap.NavDropdown title="Catagories" id="basic-nav-dropdown">
                         <ReactBootstrap.NavDropdown.Item>Projects</ReactBootstrap.NavDropdown.Item>
                         <ReactBootstrap.NavDropdown.Item>Gaming</ReactBootstrap.NavDropdown.Item>

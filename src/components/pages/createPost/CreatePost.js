@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import * as ReactBootStrap from 'react-bootstrap'
+import { Redirect } from 'react-router-dom';
+import UserContext from '../../context/UserContext';
 
 const CreatePost = () => {
+    const {userData} = useContext(UserContext)
+
     return (
         <div className={'create-post-container'}>
+            {!userData.user  ? <Redirect to='/' />: null}
             <ReactBootStrap.Form className={'create-post-form'}>
                 <ReactBootStrap.Form.Group controlId="exampleForm.ControlInput1">
                     <ReactBootStrap.Form.Label>Title</ReactBootStrap.Form.Label>
@@ -20,6 +25,7 @@ const CreatePost = () => {
                 <ReactBootStrap.Form.Group>
                     <ReactBootStrap.Form.File id="exampleFormControlFile1" label="Image (optional) *not working yet" />
                 </ReactBootStrap.Form.Group>
+                
                 <ReactBootStrap.Form.Group controlId="exampleForm.ControlTextarea1">
                     <ReactBootStrap.Form.Label>Description</ReactBootStrap.Form.Label>
                     <ReactBootStrap.Form.Control as="textarea" rows="3" />

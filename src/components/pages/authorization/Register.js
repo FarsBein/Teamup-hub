@@ -3,11 +3,11 @@ import * as ReactBootStrap from 'react-bootstrap'
 import UserContext from '../../context/UserContext'
 import Axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import logo from '../../../images/logo.png'
+
 
 const Register = () => {
-    const {setUserData} = useContext(UserContext)
-    const [toFeed,setToFeed] = useState(false)
-
+    const {userData,setUserData} = useContext(UserContext)
     const [username,setUsername] = useState({username:undefined})
     const [email,setEmail] = useState({email:undefined})
     const [password,setPassword] = useState({password:undefined})
@@ -39,12 +39,11 @@ const Register = () => {
 
         localStorage.setItem('auth-token', newUserRes.data.token)
 
-        setToFeed(true)
     }
 
     return (
         <div className='auth-container'>
-            {toFeed ? <Redirect to='/' />: null}
+            {userData.user  ? <Redirect to='/' />: null}
             <div className='Welcome'>
                 <p>🎉Welcome!🎉</p>
             </div>

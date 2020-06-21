@@ -4,15 +4,15 @@ import Axois from 'axios'
 import UserContext from '../context/UserContext.js'
 
 
-import feed from '../pages/feed/Feed.js'
-import post from '../pages/post/Post.js'
-import profile from '../pages/profile/Profile.js'
+import Feed from '../pages/feed/Feed.js'
+import Post from '../pages/post/Post.js'
+import Profile from '../pages/profile/Profile.js'
 import Register from '../pages/authorization/Register.js'
 import Login from '../pages/authorization/Login.js'
 import Navbar from '../Navbar/Navbar.js';
-import createPost from '../pages/createPost/CreatePost.js';
-import chat from '../pages/chat/Chat.js'
-import join from '../pages/chat/Join.js'
+import CreatePost from '../pages/createPost/CreatePost.js';
+import Chat from '../pages/chat/Chat.js'
+import Join from '../pages/chat/Join.js'
 import Axios from 'axios';
 
 const Root = () => {
@@ -59,15 +59,17 @@ const Root = () => {
         <div>
             <UserContext.Provider value={{ userData, setUserData}}>
                 <Navbar />
-                <Switch>
-                    <Route name='chat' component={chat} path='/chat' />                
-                    <Route name='Join' component={join} path='/join' />                
-                    <Route name='post' component={post} path='/post' />                
-                    <Route name='createPost' component={createPost} path='/createPost' />                
-                    <Route name='profile' component={profile} path='/profile' />                
+                <Switch>                    
+                    <Route name='createPost' component={CreatePost} path='/createPost' />                
+                    <Route name='chat' component={Chat} path='/chat' />
+                    <Route name='profile' component={Profile} path='/profile' />                
+                    <Route name='Join' component={Join} path='/join' />                
+                    
                     <Route name='authorization' component={Register} path='/register' />                
-                    <Route name='authorization' component={Login} path='/login' />                
-                    <Route name='feed' component={feed} path='/' />                
+                    <Route name='authorization' component={Login} path='/login' />  
+                    
+                    <Route name='post' component={Post} path='/post' />                
+                    <Route name='feed' component={Feed} path='/' />                
                 </Switch>                    
             </UserContext.Provider>
         </div>

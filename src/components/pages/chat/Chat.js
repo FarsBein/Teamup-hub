@@ -1,13 +1,17 @@
-import React, { useEffect,useState } from 'react';
+import React, { useContext,useEffect,useState } from 'react';
 import queryString from 'query-string'
 import io from 'socket.io-client'
 import InfoBar from './chat component/InfoBar.js'
 import Input from './chat component/Input.js'
 import Messages from './chat component/Messages.js'
+import UserContext from '../../context/UserContext.js';
+import { Redirect } from 'react-router-dom';
+
 
 let socket;
 
 const Chat = ({location}) => {
+    const {userData} = useContext(UserContext)
     const [username,setUsername] = useState('')
     const [room,setRoom] = useState('')
     const [message,setMessage] = useState('')
@@ -50,6 +54,7 @@ const Chat = ({location}) => {
 
     return (
         <div>
+            {!userData.user  ? <Redirect to='/' />: null}
             <div>
                 <InfoBar username={username} />
 

@@ -5,14 +5,15 @@ import UserContext from '../../context/UserContext'
 import { Redirect } from 'react-router-dom'
 
 export default function Login() {
-    const {setUserData} = useContext(UserContext)
-    const [toFeed,setToFeed] = useState(false)
+    const {userData,setUserData} = useContext(UserContext)
     
     const [username,setUsername] = useState({username:undefined})
     const [password,setPassword] = useState({password:undefined})
 
     const handleSubmits = async (e) => {
         e.preventDefault()
+
+
         const loginUser = {username, password}
         
         const newUserRes = await Axios.post(
@@ -27,13 +28,12 @@ export default function Login() {
 
         localStorage.setItem('auth-token', newUserRes.data.token)
 
-        setToFeed(true)
     }
 
 
     return (
         <div className='auth-container'>
-            {toFeed ? <Redirect to='/' />: null}
+            {userData.user  ? <Redirect to='/' />: null}
             <div className='Welcome'>
                 <p>🎉Welcome!🎉</p>
             </div>
