@@ -46,6 +46,7 @@ router.post('/register', async (req,res) => { // bc we will wait for mongodb reg
             username: username
         })
 
+
         const savedUser = await newUser.save()
         res.json(savedUser) // cant res.send after json
     }
@@ -82,8 +83,7 @@ router.post('/login', async (req,res) => {
             token,
             user: {
                 id: user._id,
-                username: user.username,
-                email: user.email
+                username: user.username
             }
         })
     }catch(err){
@@ -112,6 +112,18 @@ router.post('/tokenIsValid', async(req,res) => {
         if(!user) return res.json(false) // if the account is deleted in different device while having one open
 
         return res.json(true)
+    } catch(err){
+        res.status(500).json({err:err.message})
+    }
+})
+
+router.get('/', auth, async (req,res) => {
+    try {
+        const user = await User.findById(req.user)
+        res.json({
+            username: user.username,
+            id: user._id
+        })        
     } catch(err){
         res.status(500).json({err:err.message})
     }

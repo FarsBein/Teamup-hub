@@ -35,6 +35,7 @@
   justify-content: left;
   align-items: center;
   font-size: 15px;
+  margin: 10px;
 }
 
 /* navbar ------------------------ */
@@ -42,6 +43,7 @@
 .links{
   color: lightgray;
   text-decoration: none; /* no underline */
+  cursor: pointer;
 }
 
 .links:hover{

@@ -69,18 +69,16 @@ const Feed = () => {
                                     </ReactBootstrap.Card.Text>
                                     {/* <ReactBootstrap.Button variant="warning">save</ReactBootstrap.Button>  a save button more work will have to be done*/}
                                 </ReactBootstrap.Card.Body>
-                                <ReactBootstrap.Card.Header as="h5">
-                                            <div className='tools'>
-                                                {
-                                                    card['tools'].map((tool,i) => (
-                                                        <ReactBootstrap.Badge style={{'padding':'5px 10px', 'margin':'0 3px'}} pill variant="dark">
-                                                            {tool}
-                                                        </ReactBootstrap.Badge>
-                                                        )
-                                                    )
-                                                }
-                                            </div>   
-                                </ReactBootstrap.Card.Header>
+                                <div className='tools'>
+                                    {
+                                        card['tools'].map((tool,i) => (
+                                            <ReactBootstrap.Badge style={{'padding':'5px 10px', 'margin':'0 3px'}} pill variant="dark">
+                                                {tool}
+                                            </ReactBootstrap.Badge>
+                                            )
+                                        )
+                                    }
+                                </div>   
                             </ReactBootstrap.Card>                    
                         </div> 
                     ))} 
