@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as ReactBootstrap from "react-bootstrap";
 import '../../../App.css'
 import { Link } from 'react-router-dom';
 import pepe from '../../../images/pepe.jpg'
+import Axios from 'axios';
 
 const Feed = () => {
     const [cardsInfo,SetCardsInfo] = useState([{
@@ -39,11 +40,24 @@ const Feed = () => {
         }
     ])
 
+    useEffect(() => {
+        const getAllPosts = async () => {
+            const allPosts = await Axios.get(
+                "http://localhost:5000/posts/getAllPosts"
+            )
+            console.log(allPosts.data)
+            SetCardsInfo(allPosts.data)
+        }
+        getAllPosts()
+    },[])
+    
+    
+
     return (
         <div className={'wrapper'}>
             <div className={'cards-container'}>
                     {cardsInfo.map((card,index) => (
-                        <div className={'cards'} key={index}>
+                        <div key={card._id} className={'cards'}>
                             <ReactBootstrap.Card className='reactBootstrap-card'>
                                 <ReactBootstrap.Card.Header as="h5">
                                     <ReactBootstrap.Container>
@@ -51,27 +65,27 @@ const Feed = () => {
                                             <ReactBootstrap.Image className={'feed-profile-image'} src={card['profileImage']} roundedCircle />
                                             <ReactBootstrap.Col>
                                                 <div style={{"fontSize":"15px"}}>
-                                                    {card['name']}
+                                                    {card.name}
                                                 </div>  
                                                 <div style={{"fontSize":"10px"}}>
-                                                    in {card['field']}
+                                                    in {card.category}
                                                 </div>                                          
                                             </ReactBootstrap.Col>                      
                                         </ReactBootstrap.Row>
                                     </ReactBootstrap.Container>
                                 </ReactBootstrap.Card.Header>
                                 <ReactBootstrap.Card.Body>
-                                    <Link to="/post" style={{ 'textDecoration': 'none'}}>
-                                        <ReactBootstrap.Card.Title>{card['title']}</ReactBootstrap.Card.Title>
+                                    <Link to={`/post/?id=${card._id}`} style={{ 'textDecoration': 'none'}}>
+                                        <ReactBootstrap.Card.Title>{card.title}</ReactBootstrap.Card.Title>
                                     </Link>
                                     <ReactBootstrap.Card.Text>
-                                        {card['description']}
+                                        {card.briefDescription}
                                     </ReactBootstrap.Card.Text>
                                     {/* <ReactBootstrap.Button variant="warning">save</ReactBootstrap.Button>  a save button more work will have to be done*/}
                                 </ReactBootstrap.Card.Body>
                                 <div className='tools'>
                                     {
-                                        card['tools'].map((tool,i) => (
+                                        card.tools.map((tool,i) => (
                                             <ReactBootstrap.Badge style={{'padding':'5px 10px', 'margin':'0 3px'}} pill variant="dark">
                                                 {tool}
                                             </ReactBootstrap.Badge>

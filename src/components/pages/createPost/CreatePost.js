@@ -25,9 +25,12 @@ const CreatePost = () => {
                 <ReactBootStrap.Form.Group>
                     <ReactBootStrap.Form.File id="exampleFormControlFile1" label="Image (optional) *not working yet" />
                 </ReactBootStrap.Form.Group>
-                
+                <ReactBootStrap.Form.Group controlId="exampleForm.ControlInput1">
+                    <ReactBootStrap.Form.Label>Brief Description</ReactBootStrap.Form.Label>
+                    <ReactBootStrap.Form.Control type="text" placeholder="brief description..." />
+                </ReactBootStrap.Form.Group>
                 <ReactBootStrap.Form.Group controlId="exampleForm.ControlTextarea1">
-                    <ReactBootStrap.Form.Label>Description</ReactBootStrap.Form.Label>
+                    <ReactBootStrap.Form.Label>Full Description</ReactBootStrap.Form.Label>
                     <ReactBootStrap.Form.Control as="textarea" rows="3" />
                 </ReactBootStrap.Form.Group>
                 <ReactBootStrap.Button variant="primary" type="submit">

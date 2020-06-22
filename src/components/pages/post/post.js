@@ -1,24 +1,50 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import * as ReactBootStrap from 'react-bootstrap'
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
+import queryString from 'query-string'
 
-const Post = () => {
+
+const Post = ({location}) => {
+    const [post,setPost] = useState({})
+    
+    useEffect(() => {
+        const {id} = queryString.parse(location.search)
+        console.log('id: ', id)
+        const getPost = async () => {
+            const postReceived = await Axios.post(
+                'http://localhost:5000/posts/getPost',
+                {
+                    id: id
+                }
+            )
+            setPost(postReceived.data)
+            console.log('postReceived.data: ', postReceived.data)
+        }
+        getPost()
+    },[])
+
     return (
         <div className={'wrapper'}>
             <ReactBootStrap.Card className='post-card'>
                 {/* <ReactBootStrap.Card.Img variant="top" src="holder.js/100px180" /> */}
                 <ReactBootStrap.Card.Body>
-                    <ReactBootStrap.Card.Title>Card Title</ReactBootStrap.Card.Title>
+                    <ReactBootStrap.Card.Title>{post.title}</ReactBootStrap.Card.Title>
                     <ReactBootStrap.Card.Text>
-                        HEADING LEVEL 2
-                        HEADING LEVEL 3
-                        HEADING LEVEL 4
-                        HEADING LEVEL 5
-                        HEADING LEVEL 6
-                        Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing.
-                        vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent
+                        {post.fullDescription}
                     </ReactBootStrap.Card.Text>
-                    <ReactBootStrap.Card body>Javascript, C++, C#, Unity</ReactBootStrap.Card>
+                        <div className="post-tools">
+                            {
+                                post.tools ? 
+                                post.tools.map((tool,i)=>(
+                                            <ReactBootStrap.Badge style={{'padding':'10px', 'margin':'0 3px'}} pill variant="light">
+                                                {tool}
+                                            </ReactBootStrap.Badge>
+                                        )
+                                    ):
+                                null
+                            }                            
+                        </div>
                     <Link to='/chat'>
                         <ReactBootStrap.Button style={{'margin':'13px'}} variant="dark">Chat</ReactBootStrap.Button>
                     </Link>                        

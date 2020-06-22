@@ -13,7 +13,7 @@ const Navbar = () => {
         <div>
             <ReactBootstrap.Navbar bg="dark" variant="dark" expand="lg" className={'navbar'}>
                 {/* <img className={'logo'} src={logo} alt={'logo'} /> */}
-                <ReactBootstrap.Navbar.Brand href="/feed">
+                <ReactBootstrap.Navbar.Brand href="/">
                     <img
                         src={logo}
                         width="51"
