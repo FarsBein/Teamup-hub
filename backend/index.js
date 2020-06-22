@@ -27,7 +27,18 @@ io.on('connection', (socket)=> {
     
         socket.join(user.room);
     
-        socket.emit('message', { user: 'admin', text: `${user.username}, welcome to room ${user.room}.`});
+        socket.emit('message', { user: 'admin', text: `${user.username}, welcome!`});
+
+        // db connection
+        // chat.find().limit(100).sort({_id:1}).toArray(function(err, res){
+        //     if(err){
+        //         throw err;
+        //     }
+
+               // Emit the messages
+        //     socket.emit('output', res);
+        // });
+
         socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
     
         io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });

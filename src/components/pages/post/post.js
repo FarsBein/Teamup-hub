@@ -1,16 +1,17 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useContext } from 'react'
 import * as ReactBootStrap from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import queryString from 'query-string'
+import UserContext from '../../context/UserContext';
 
 
 const Post = ({location}) => {
     const [post,setPost] = useState({})
-    
+    const {userData} = useContext(UserContext)
+
     useEffect(() => {
         const {id} = queryString.parse(location.search)
-        console.log('id: ', id)
         const getPost = async () => {
             const postReceived = await Axios.post(
                 'http://localhost:5000/posts/getPost',
@@ -19,7 +20,6 @@ const Post = ({location}) => {
                 }
             )
             setPost(postReceived.data)
-            console.log('postReceived.data: ', postReceived.data)
         }
         getPost()
     },[])
@@ -45,7 +45,7 @@ const Post = ({location}) => {
                                 null
                             }                            
                         </div>
-                    <Link to='/chat'>
+                    <Link to={userData.user.username && (userData.user.username !== post.name)? `/chat?username=${userData.user.username}&room=${userData.user.username + 'And' +post.name}`:'/'}>
                         <ReactBootStrap.Button style={{'margin':'13px'}} variant="dark">Chat</ReactBootStrap.Button>
                     </Link>                        
                 </ReactBootStrap.Card.Body>

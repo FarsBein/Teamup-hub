@@ -41,7 +41,6 @@ router.get('/getAllPosts', async (req,res)=> {
 router.post('/getPost', async (req,res)=> {
     try {
         const {id} = req.body
-        console.log(id)
         const foundPost = await Post.findById(id) 
         res.json(foundPost)
 

@@ -33,22 +33,17 @@ const Root = () => {
                 null, //the body is null
                 {headers:{"x-auth-token":token}}
             )
-            console.log("tokenResponse.data: ", tokenResponse.data)
             if(tokenResponse.data) { // if token is valid
-                console.log("pass01: ", tokenResponse.data)
 
                 const userResponse = await Axios.get(
                     "http://localhost:5000/users/",
                     {headers: {'x-auth-token':token}}
                 )
-            
-                console.log("pass02: ", userResponse.data)
 
                 setUserData({
                     token: token,
                     user:userResponse.data
                 })
-                console.log('2userData: ',userData)
             }
         }
 

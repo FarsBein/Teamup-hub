@@ -7,8 +7,6 @@ const Message = ({message,username}) => {
 
     const isUserMessage = (message.user.trim().toLowerCase() === username.trim().toLowerCase())
 
-    console.log(message.user.trim().toLowerCase(),username)
-
     return (
         <div>
             {

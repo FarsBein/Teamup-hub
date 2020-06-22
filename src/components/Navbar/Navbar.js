@@ -29,7 +29,7 @@ const Navbar = () => {
                 <ReactBootstrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <ReactBootstrap.Navbar.Collapse id="basic-navbar-nav">
                     <ReactBootstrap.Nav className="mr-auto">
-                    <ReactBootstrap.Nav.Link><Link className={'links'} to="/feed">Feed</Link></ReactBootstrap.Nav.Link>
+                    <ReactBootstrap.Nav.Link><Link className={'links'} to="/">Feed</Link></ReactBootstrap.Nav.Link>
 
                     {   
                         userData.user ? // check for logged in user to show these options
