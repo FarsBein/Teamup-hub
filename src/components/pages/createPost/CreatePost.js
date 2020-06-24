@@ -3,6 +3,8 @@ import * as ReactBootStrap from 'react-bootstrap'
 import { Redirect } from 'react-router-dom';
 import UserContext from '../../context/UserContext';
 import Axios from 'axios';
+import ErrorAlert from '../../Error/ErrorAlert.js'
+
 
 const CreatePost = () => {
     const {userData} = useContext(UserContext)
@@ -12,30 +14,54 @@ const CreatePost = () => {
     const [fullDescription,SetFullDescription] = useState()
     const [tools,setTools] = useState([])
     const [toFeed,setToFeed] =useState(false)
+    const [errorMessage,setErrorMessage] = useState(undefined)
+    const [image,setImage] = useState(undefined)
+    const [imageUrl,setImageUrl] = useState(undefined)
 
     const createPost = async (e) => {
         e.preventDefault()
+        await imageDetail()
         const newPost = {
                 name:userData.user.username, 
                 title:title,
                 category:category,
                 briefDescription:briefDescription, 
                 fullDescription:fullDescription,
-                tools:tools
+                tools:tools,
+                image:imageUrl?imageUrl:''
         }
+        try {
+            const savedPost = await Axios.post(
+                'http://localhost:5000/posts/createPost',
+                newPost
+            )
+            setToFeed(true)
+            //savedPost.data
 
-        const savedPost = await Axios.post(
-            'http://localhost:5000/posts/createPost',
-            newPost
-        )
-        setToFeed(true)
-        //savedPost.data
+        }catch (err) {
+            err.response.data.msg && setErrorMessage(err.response.data.msg)
+        } 
+    }
+
+    const imageDetail = () => {
+        const data = new FormData()
+        data.append('file',image) 
+        data.append('upload_preset','team_up_hub')
+        data.append('cloud_name','farsbein01')
+        fetch('https://api.cloudinary.com/v1_1/farsbein01/image/upload',{
+                method: 'post',
+                body:data
+            })
+            .then((res) => res.json())
+            .then((data) => setImageUrl(data.url))
+            .catch((err) => console.log(data))
     }
 
     return (
         <div className={'create-post-container'}>
             {toFeed || !userData.user  ? <Redirect to='/' />: null}
             <ReactBootStrap.Form className={'create-post-form'}>
+                {errorMessage ? <ErrorAlert clearError={()=>setErrorMessage(undefined)} errorMessage={errorMessage} />: null}
                 <ReactBootStrap.Form.Group controlId="exampleForm.ControlInput1">
                     <ReactBootStrap.Form.Label>Title</ReactBootStrap.Form.Label>
                     <ReactBootStrap.Form.Control onChange={(e) => setTitle(e.target.value)} type="text" placeholder="Title" />
@@ -51,7 +77,9 @@ const CreatePost = () => {
                     </ReactBootStrap.Form.Control>
                 </ReactBootStrap.Form.Group>
                 <ReactBootStrap.Form.Group>
-                    <ReactBootStrap.Form.File id="exampleFormControlFile1" label="Image (optional) *not working yet" />
+                    <ReactBootStrap.Form.File onChange={((e) => setImage(e.target.files[0]))}
+                     id="exampleFormControlFile1" 
+                     label="Image (optional) *not working yet"/>
                 </ReactBootStrap.Form.Group>
                 <ReactBootStrap.Form.Group controlId="exampleForm.ControlInput1">
                     <ReactBootStrap.Form.Label>Brief Description</ReactBootStrap.Form.Label>

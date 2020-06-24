@@ -1,0 +1,12 @@
+.Error-alert {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: large;
+}
+
+.Error-alert-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

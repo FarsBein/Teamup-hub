@@ -4,7 +4,7 @@ import UserContext from '../../context/UserContext'
 import Axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import logo from '../../../images/logo.png'
-
+import ErrorAlert from '../../Error/ErrorAlert.js'
 
 const Register = () => {
     const {userData,setUserData} = useContext(UserContext)
@@ -12,33 +12,35 @@ const Register = () => {
     const [email,setEmail] = useState({email:undefined})
     const [password,setPassword] = useState({password:undefined})
     const [passwordCheck,setPasswordCheck] = useState({password:undefined})
-    
-
+    const [errorMessage,setErrorMessage] = useState(undefined)
 
     const handleSubmits = async (e) => {
         e.preventDefault()
         const newUser = {username,email,password,passwordCheck}
+        try {
+            await Axios.post(
+                'http://localhost:5000/users/register',
+                newUser
+            )
+            
+            const newUserRes = await Axios.post(
+                'http://localhost:5000/users/login',
+                {
+                    username,
+                    password
+                }
+            )
 
-        await Axios.post(
-            'http://localhost:5000/users/register',
-            newUser
-        )
-        
-        const newUserRes = await Axios.post(
-            'http://localhost:5000/users/login',
-            {
-                username,
-                password
-            }
-        )
+            setUserData({
+                token: newUserRes.data.token,
+                user: newUserRes.data.user
+            })
 
-        setUserData({
-            token: newUserRes.data.token,
-            user: newUserRes.data.user
-        })
+            localStorage.setItem('auth-token', newUserRes.data.token)
 
-        localStorage.setItem('auth-token', newUserRes.data.token)
-
+        }catch (err) {
+            err.response.data.msg && setErrorMessage(err.response.data.msg)
+        }
     }
 
     return (
@@ -48,16 +50,7 @@ const Register = () => {
                 <p>🎉Welcome!🎉</p>
             </div>
                 <ReactBootStrap.Form className={'form'}>
-                    <ReactBootStrap.Form.Group controlId="formBasicFirstName">
-                        <ReactBootStrap.Form.Label >FirstName</ReactBootStrap.Form.Label>
-                        <ReactBootStrap.Form.Control type="text" placeholder="Enter First Name" />
-                    </ReactBootStrap.Form.Group>
-
-                    <ReactBootStrap.Form.Group controlId="formBasicLastName">
-                        <ReactBootStrap.Form.Label >LastName</ReactBootStrap.Form.Label>
-                        <ReactBootStrap.Form.Control type="text" placeholder="Enter Last Name" />
-                    </ReactBootStrap.Form.Group>
-
+                    {errorMessage ? <ErrorAlert clearError={()=>setErrorMessage(undefined)} errorMessage={errorMessage} />: null}
                     <ReactBootStrap.Form.Group controlId="formBasicUsername">
                         <ReactBootStrap.Form.Label >Username</ReactBootStrap.Form.Label>
                         <ReactBootStrap.Form.Control onChange={(e) => setUsername(e.target.value)} type="text" placeholder="Enter Username" />

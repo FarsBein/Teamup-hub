@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import * as ReactBootstrap from "react-bootstrap";
+import * as ReactBootStrap from "react-bootstrap";
 import '../../../App.css'
 import { Link } from 'react-router-dom';
 import pepe from '../../../images/pepe.jpg'
@@ -57,45 +57,46 @@ const Feed = () => {
             <div className={'cards-container'}>
                     {cardsInfo.map((card,index) => (
                         <div key={card._id} className={'cards'}>
-                            <ReactBootstrap.Card className='reactBootstrap-card'>
-                                <ReactBootstrap.Card.Header as="h5">
-                                    <ReactBootstrap.Container>
-                                        <ReactBootstrap.Row>
-                                            <ReactBootstrap.Image className={'feed-profile-image'} src={card['profileImage']} roundedCircle />
-                                            <ReactBootstrap.Col>
+                            <ReactBootStrap.Card className='reactBootStrap-card'>
+                                <ReactBootStrap.Card.Header as="h5">
+                                    <ReactBootStrap.Container>
+                                        <ReactBootStrap.Row>
+                                            <ReactBootStrap.Image className={'feed-profile-image'} src={pepe} roundedCircle />
+                                            <ReactBootStrap.Col>
                                                 <div style={{"fontSize":"15px"}}>
                                                     {card.name}
                                                 </div>  
                                                 <div style={{"fontSize":"10px"}}>
                                                     in {card.category}
                                                 </div>                                          
-                                            </ReactBootstrap.Col>                      
-                                        </ReactBootstrap.Row>
-                                    </ReactBootstrap.Container>
-                                </ReactBootstrap.Card.Header>
-                                <ReactBootstrap.Card.Body>
+                                            </ReactBootStrap.Col>                      
+                                        </ReactBootStrap.Row>
+                                    </ReactBootStrap.Container>
+                                </ReactBootStrap.Card.Header>
+                                <ReactBootStrap.Card.Body>
                                     <Link to={`/post/?id=${card._id}`} style={{ 'textDecoration': 'none'}}>
-                                        <ReactBootstrap.Card.Title>{card.title}</ReactBootstrap.Card.Title>
+                                        <ReactBootStrap.Card.Title>{card.title}</ReactBootStrap.Card.Title>
                                     </Link>
-                                    <ReactBootstrap.Card.Text>
+                                    {card.image ? <ReactBootStrap.Card.Img variant="top" src={card.image} /> : null}
+                                    <ReactBootStrap.Card.Text>
                                         {card.briefDescription}
-                                    </ReactBootstrap.Card.Text>
-                                    {/* <ReactBootstrap.Button variant="warning">save</ReactBootstrap.Button>  a save button more work will have to be done*/}
-                                </ReactBootstrap.Card.Body>
+                                    </ReactBootStrap.Card.Text>
+                                    {/* <ReactBootStrap.Button variant="warning">save</ReactBootStrap.Button>  a save button more work will have to be done*/}
+                                </ReactBootStrap.Card.Body>
                                 <div className='tools'>
                                     {
                                         card.tools.map((tool,i) => (
-                                            <ReactBootstrap.Badge style={{
+                                            <ReactBootStrap.Badge style={{
                                                 'padding':'6px 10px',
                                                 'margin':'0 3px'}} 
                                                 pill variant="dark">
                                                 {tool}
-                                            </ReactBootstrap.Badge>
+                                            </ReactBootStrap.Badge>
                                             )
                                         )
                                     }
                                 </div>   
-                            </ReactBootstrap.Card>                    
+                            </ReactBootStrap.Card>                    
                         </div> 
                     ))} 
             </div>

@@ -4,8 +4,8 @@ const Post = require("../models/postModel.js")
 
 router.post('/createPost', async (req,res) => {
     try {
-        const {name, title,category,briefDescription, fullDescription,tools} = req.body
-        if (!name || !title || !category || !briefDescription || !fullDescription){
+        const {name, title,category,briefDescription, fullDescription,tools, image} = req.body
+        if (!name || !title || !category || !briefDescription || !fullDescription || !image){
             return res
                 .status(400)
                 .json({msg:'please fill all the fields!'})
@@ -17,7 +17,8 @@ router.post('/createPost', async (req,res) => {
             category:category,
             briefDescription:briefDescription, 
             fullDescription:fullDescription,
-            tools: tools ? tools : []
+            tools: tools ? tools : [],
+            image:image
         })
         const savedPost = await newPost.save() // save it to the data base and receive the copy
         
@@ -51,9 +52,9 @@ router.post('/getPost', async (req,res)=> {
 
 router.post('/updatePost', async (req,res)=> {
     try {
-        const {id,title,category,briefDescription, fullDescription, tools} = req.body
+        const {id,title,category,briefDescription, fullDescription, tools,image} = req.body
         
-        if (!id || !title || !category || !briefDescription || !fullDescription){
+        if (!id || !title || !category || !briefDescription || !fullDescription || !image){
             return res
                 .status(400)
                 .json({msg:'please fill all the fields!'})
@@ -66,7 +67,8 @@ router.post('/updatePost', async (req,res)=> {
                 category:category,
                 briefDescription:briefDescription, 
                 fullDescription:fullDescription,
-                tools: tools ? tools : []
+                tools: tools ? tools : [],
+                image:image
             },{
                 new: true // return the updated post
             })

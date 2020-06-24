@@ -27,7 +27,7 @@ const Post = ({location}) => {
     return (
         <div className={'wrapper'}>
             <ReactBootStrap.Card className='post-card'>
-                {/* <ReactBootStrap.Card.Img variant="top" src="holder.js/100px180" /> */}
+                {post.image ? <ReactBootStrap.Card.Img variant="top" src={post.image} /> : null}
                 <ReactBootStrap.Card.Body>
                     <ReactBootStrap.Card.Title>{post.title}</ReactBootStrap.Card.Title>
                     <ReactBootStrap.Card.Text>
@@ -45,7 +45,7 @@ const Post = ({location}) => {
                                 null
                             }                            
                         </div>
-                    <Link to={userData.user.username && (userData.user.username !== post.name)? `/chat?username=${userData.user.username}&room=${userData.user.username + 'And' +post.name}`:'/'}>
+                    <Link to={userData.user && (userData.user.username !== post.name)? `/chat?username=${userData.user.username}&room=${userData.user.username + 'And' +post.name}`:'/'}>
                         <ReactBootStrap.Button style={{'margin':'13px'}} variant="dark">Chat</ReactBootStrap.Button>
                     </Link>                        
                 </ReactBootStrap.Card.Body>

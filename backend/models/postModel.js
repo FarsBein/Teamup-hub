@@ -24,12 +24,11 @@ const postSchema = new mongoose.Schema({
     tools: {
         type: Array,
         required:false
+    },
+    image:{
+        type: String,
+        required: false
     }
-    //added later
-    // image:{
-    //     type: String,
-    //     required: false
-    // }
 
 })
 

@@ -19,7 +19,7 @@ router.post('/register', async (req,res) => { // bc we will wait for mongodb reg
             return res.status(400).json({msg: "Password shorter then 5 characters!"})
 
         if (password !== passwordCheck)
-            return res.status(400).json({msg: "The two passwords are no the same!"})
+            return res.status(400).json({msg: "passwords are not the same!"})
 
         const existingEmail = await User.findOne({email:email}) // await bc it will be searching to find a matching email in the database User (note: find will return an empty array if it finds nothing but findOne returns null)
         const existingUsername = await User.findOne({username:username})
