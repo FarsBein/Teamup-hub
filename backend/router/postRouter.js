@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router() //creates a new router
 const Post = require("../models/postModel.js")
-const { default: profile } = require('../../src/components/pages/profile/Profile.js')
 
 router.post('/createPost', async (req,res) => {
     try {
