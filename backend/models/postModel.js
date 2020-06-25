@@ -25,11 +25,14 @@ const postSchema = new mongoose.Schema({
         type: Array,
         required:false
     },
+    profileImage:{
+        type: String,
+        required: true
+    },
     image:{
         type: String,
         required: false
     }
-
 })
 
 const Post = mongoose.model('post',postSchema)

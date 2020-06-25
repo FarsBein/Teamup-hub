@@ -20,7 +20,7 @@ const CreatePost = () => {
 
     const createPost = async (e) => {
         e.preventDefault()
-        await imageDetail()
+        if (image) await imageDetail()
         const newPost = {
                 name:userData.user.username, 
                 title:title,
@@ -28,8 +28,10 @@ const CreatePost = () => {
                 briefDescription:briefDescription, 
                 fullDescription:fullDescription,
                 tools:tools,
-                image:imageUrl?imageUrl:''
+                image:imageUrl?imageUrl:'',
+                profileImage: userData.user.profileImage
         }
+        
         try {
             const savedPost = await Axios.post(
                 'http://localhost:5000/posts/createPost',

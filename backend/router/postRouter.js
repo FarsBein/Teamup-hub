@@ -1,16 +1,17 @@
 const express = require('express')
 const router = express.Router() //creates a new router
 const Post = require("../models/postModel.js")
+const { default: profile } = require('../../src/components/pages/profile/Profile.js')
 
 router.post('/createPost', async (req,res) => {
     try {
-        const {name, title,category,briefDescription, fullDescription,tools, image} = req.body
-        if (!name || !title || !category || !briefDescription || !fullDescription || !image){
+        const {name, title,category,briefDescription, fullDescription,tools, image, profileImage} = req.body
+        if (!name || !title || !category || !briefDescription || !fullDescription || !profileImage){
             return res
                 .status(400)
                 .json({msg:'please fill all the fields!'})
             }
-
+        console.log('profileImage: ', profileImage)
         const newPost = new Post({ //create a new object post
             name: name,
             title:title,
@@ -18,10 +19,12 @@ router.post('/createPost', async (req,res) => {
             briefDescription:briefDescription, 
             fullDescription:fullDescription,
             tools: tools ? tools : [],
-            image:image
+            image:image,
+            profileImage:profileImage
         })
+        console.log('newPost: ', newPost)
         const savedPost = await newPost.save() // save it to the data base and receive the copy
-        
+        console.log('savedPost: ',savedPost)
         res.json(savedPost)
 
     } catch (err) {
@@ -52,9 +55,9 @@ router.post('/getPost', async (req,res)=> {
 
 router.post('/updatePost', async (req,res)=> {
     try {
-        const {id,title,category,briefDescription, fullDescription, tools,image} = req.body
+        const {id,title,category,briefDescription, fullDescription, tools,image,profileImage} = req.body
         
-        if (!id || !title || !category || !briefDescription || !fullDescription || !image){
+        if (!id || !title || !category || !briefDescription || !fullDescription){
             return res
                 .status(400)
                 .json({msg:'please fill all the fields!'})
@@ -68,7 +71,8 @@ router.post('/updatePost', async (req,res)=> {
                 briefDescription:briefDescription, 
                 fullDescription:fullDescription,
                 tools: tools ? tools : [],
-                image:image
+                image:image,
+                profileImage:profileImage
             },{
                 new: true // return the updated post
             })

@@ -6,10 +6,15 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const auth = require('../middleware/auth.js')
 
+
+const avatar = ['https://res.cloudinary.com/farsbein01/image/upload/v1593032173/dogAvator_wxbheq.jpg', 
+                'https://res.cloudinary.com/farsbein01/image/upload/v1593032172/pandaAvators_mvysik.jpg', 
+                'https://res.cloudinary.com/farsbein01/image/upload/v1593032173/foxAvators_vlebkn.jpg']
+
 router.post('/register', async (req,res) => { // bc we will wait for mongodb register completion
     
     try {
-        const {username,email, password,passwordCheck} = req.body; // bc of app.use(express.json()) we can simple destructor the variables since they are already parsed
+        const {username,email, password,passwordCheck, profileImage} = req.body; // bc of app.use(express.json()) we can simple destructor the variables since they are already parsed
 
         //validation 
         if ( !email || !password || !passwordCheck|| !username)
@@ -43,7 +48,8 @@ router.post('/register', async (req,res) => { // bc we will wait for mongodb reg
         const newUser = new User({
             email:email,
             password: passwordHash,
-            username: username
+            username: username,
+            profileImage: profileImage ? profileImage : avatar[Math.round(Math.random() * 2)] // use a random avatar
         })
 
 
@@ -83,7 +89,8 @@ router.post('/login', async (req,res) => {
             token,
             user: {
                 id: user._id,
-                username: user.username
+                username: user.username,
+                profileImage:user.profileImage
             }
         })
     }catch(err){
@@ -122,7 +129,8 @@ router.get('/', auth, async (req,res) => {
         const user = await User.findById(req.user)
         res.json({
             username: user.username,
-            id: user._id
+            id: user._id,
+            profileImage: user.profileImage
         })        
     } catch(err){
         res.status(500).json({err:err.message})

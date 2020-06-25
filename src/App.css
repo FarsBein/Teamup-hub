@@ -75,30 +75,6 @@
   display: flex;
 }
 
-/* authentication ---------------- */
-
-.auth-container {
-  margin: 40px auto;
-  max-width: 900px;
-  min-width: 350px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.form {
-  box-shadow: 0 0 2px gray;
-  padding: 25px;
-  border-radius: 6px;
-  width: 350px;
-}
-
-.Welcome {
-  font-size: 50px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
 
 /* create post ------------------ */
 

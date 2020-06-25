@@ -56,12 +56,12 @@ const Feed = () => {
         <div className={'wrapper'}>
             <div className={'cards-container'}>
                     {cardsInfo.map((card,index) => (
-                        <div key={card._id} className={'cards'}>
+                        <div key={card._id} onClick={()=> console.log('card:',card)} className={'cards'}>
                             <ReactBootStrap.Card className='reactBootStrap-card'>
                                 <ReactBootStrap.Card.Header as="h5">
                                     <ReactBootStrap.Container>
                                         <ReactBootStrap.Row>
-                                            <ReactBootStrap.Image className={'feed-profile-image'} src={pepe} roundedCircle />
+                                            <ReactBootStrap.Image className={'feed-profile-image'} src={card.profileImage} roundedCircle />
                                             <ReactBootStrap.Col>
                                                 <div style={{"fontSize":"15px"}}>
                                                     {card.name}
