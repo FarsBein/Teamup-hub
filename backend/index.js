@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 5000 // for future live server we will use a sa
 const router = require('./router/router.js')
 const userRouter = require('./router/userRouter.js')
 const postRouter = require('./router/postRouter.js')
+const chatRouter = require('./router/chatRouter.js')
 
 const app = express()
 app.use(express.json()) // to parse our javascript code
@@ -77,3 +78,4 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
 app.use(router)
 app.use('/users',userRouter)
 app.use('/posts',postRouter)
+app.use('/chat',chatRouter)

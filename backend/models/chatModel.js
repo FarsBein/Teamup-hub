@@ -1,22 +1,21 @@
 const mongoose = require("mongoose")
 
 const chatSchema = new mongoose.Schema({
-    username: {
+    user: {
         type: String,
         required: true,
-        unique:true
     },
     room: {
         type: String,
         required: true
     },
-    message: {
+    text: {
         type: String,
         required: true
     },
     date: {
         type: Date,
-        required:Date.now
+        default:Date.now
     }
 })
 

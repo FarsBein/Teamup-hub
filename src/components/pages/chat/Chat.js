@@ -4,33 +4,76 @@ import io from 'socket.io-client'
 import InfoBar from './chat component/InfoBar.js'
 import Input from './chat component/Input.js'
 import Messages from './chat component/Messages.js'
+import Axios from 'axios';
+import './chat component/chatUI.css'
 
 let socket;
 
 const Chat = ({location}) => {
     const [username,setUsername] = useState('')
-    const [room,setRoom] = useState('')
+    const [room,setRoom] = useState(undefined)
     const [message,setMessage] = useState('')
     const [messages,setMessages] = useState([])
+    const [pastMessages,setPastMessages] = useState(undefined)
     const ENDPOINT = 'localhost:5000'
 
-    useEffect(() => {
-        const {username,room} = queryString.parse(location.search)
+    const getPastMessages = async (room) => {
+        try{
+            const checkRes = await Axios.post(
+                'http://localhost:5000/chat/getPastMessages',
+                {
+                    room:room
+                }
+            )
 
-        socket = io(ENDPOINT)
-
-        setUsername(username)
-        setRoom(room)
-
-        socket.emit('join',{username,room}, () => {
-
-        })
-
-        return () => {
-            socket.emit('disconnect')
-
-            socket.off()
+            if (checkRes.data) setMessages(checkRes.data)
+            console.log('checkRes.data: ',checkRes.data)
+        } catch (err) {
+            console.log({err: err.response.data.msg})
         }
+    }
+
+    const addMessage = async (username,text,room) => {
+        try{
+            const savedMessage = await Axios.post(
+                'http://localhost:5000/chat/addMessage',
+                {
+                    user:username,
+                    text:text,
+                    room:room
+                }
+            )
+            console.log('savedMessage.data: ',savedMessage.data)
+        } catch (err) {
+            console.log({err: err.response.data.msg})
+        }
+    }
+
+    useEffect(() => {
+        const startChat = async () => {
+            try {
+                const {username,room} = queryString.parse(location.search)
+
+                socket = io(ENDPOINT)
+
+                setUsername(username)
+                setRoom(room)
+                await getPastMessages(room)
+
+                socket.emit('join',{username,room}, () => {
+
+                })
+
+                return () => {
+                    socket.emit('disconnect')
+
+                    socket.off()
+                }            
+            } catch (err) {
+                console.log({err: err.response.data.msg})
+            }
+        }
+        startChat()
 
     },[ENDPOINT,location.search])
 
@@ -38,18 +81,22 @@ const Chat = ({location}) => {
         socket.on('message', (message) => {
             setMessages([...messages, message])
         })
-    },[messages])
+    },[messages,room])
 
     const sendMessage = (event) => {
         event.preventDefault() // to avoid refreshing page
+        if(username&&message&&room)
+            addMessage(username,message,room)
 
         socket.emit('sendMessage', message, ()=> setMessage(''))
     }
 
-    console.log('message: ',message,'messages: ',messages)
+    // console.log('message: ',message,'messages: ',messages)
 
     return (
-        <div>
+        <div className={'chat-container'}>
+            <div>
+            </div>
             <div>
                 <InfoBar username={username} />
 

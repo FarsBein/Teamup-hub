@@ -13,6 +13,8 @@ import Navbar from '../Navbar/Navbar.js';
 import CreatePost from '../pages/createPost/CreatePost.js';
 import Chat from '../pages/chat/Chat.js'
 import Join from '../pages/chat/Join.js'
+import ChatBoard from '../pages/chat/ChatBoard.js'
+
 import Axios from 'axios';
 
 const Root = () => {
@@ -59,7 +61,8 @@ const Root = () => {
                     <Route name='chat' component={Chat} path='/chat' />
                     <Route name='profile' component={Profile} path='/profile' />                
                     <Route name='Join' component={Join} path='/join' />                
-                    
+                    <Route name='ChatBoard' component={ChatBoard} path='/ChatBoard' />
+
                     <Route name='authorization' component={Register} path='/register' />                
                     <Route name='authorization' component={Login} path='/login' />  
                     

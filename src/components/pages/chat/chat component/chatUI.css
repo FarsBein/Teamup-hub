@@ -1,3 +1,9 @@
+/* main chat.js --------------- */
+
+.chat-container {
+}
+
+/* infoBar -------------------- */
 .infoBar-container{
     background: #0aca86;
     display: flex;

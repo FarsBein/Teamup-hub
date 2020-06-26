@@ -10,7 +10,6 @@ router.post('/createPost', async (req,res) => {
                 .status(400)
                 .json({msg:'please fill all the fields!'})
             }
-        console.log('profileImage: ', profileImage)
         const newPost = new Post({ //create a new object post
             name: name,
             title:title,
@@ -21,9 +20,7 @@ router.post('/createPost', async (req,res) => {
             image:image,
             profileImage:profileImage
         })
-        console.log('newPost: ', newPost)
         const savedPost = await newPost.save() // save it to the data base and receive the copy
-        console.log('savedPost: ',savedPost)
         res.json(savedPost)
 
     } catch (err) {

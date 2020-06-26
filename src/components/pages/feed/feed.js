@@ -6,39 +6,7 @@ import pepe from '../../../images/pepe.jpg'
 import Axios from 'axios';
 
 const Feed = () => {
-    const [cardsInfo,SetCardsInfo] = useState([{
-            'profileImage':pepe, 
-            'name':'Roy zimmakes',
-            'field':'Gaming Development',
-            'title':'Shooting game',
-            'description':'need a team to build multiplayer shooting game using c# and unity',
-            'tools':['JavaScript', 'C++', 'C#', 'Unity']
-        },
-        {
-            'profileImage':pepe, 
-            'name':'Roy zimmakes',
-            'field':'Software Development',
-            'title':'Desktop management app',
-            'description':'I want to build asdhajskhd dajshdkj akjshdkjahjkdh jhdakjhdjk',
-            'tools':['JavaScript', 'C', 'Google']
-        },
-        {
-            'profileImage':pepe, 
-            'name':'Roy zimmakes',
-            'field':'Website Development',
-            'title':'Website for kids',
-            'description':'need help in building a website dasjd aklsjdkj dkajslkdj',
-            'tools':['JavaScript']
-        },
-        {
-            'profileImage':pepe, 
-            'name':'Roy zimmakes',
-            'field':'Gaming Development',
-            'title':'Shooting game',
-            'description':'need a team to build multiplayer shooting game using c# and unity',
-            'tools':['C#']
-        }
-    ])
+    const [cardsInfo,SetCardsInfo] = useState([])
 
     useEffect(() => {
         const getAllPosts = async () => {
@@ -56,7 +24,7 @@ const Feed = () => {
         <div className={'wrapper'}>
             <div className={'cards-container'}>
                     {cardsInfo.map((card,index) => (
-                        <div key={card._id} onClick={()=> console.log('card:',card)} className={'cards'}>
+                        <div key={card._id} className={'cards'}>
                             <ReactBootStrap.Card className='reactBootStrap-card'>
                                 <ReactBootStrap.Card.Header as="h5">
                                     <ReactBootStrap.Container>
