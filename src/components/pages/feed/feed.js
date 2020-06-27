@@ -13,6 +13,7 @@ const Feed = () => {
             const allPosts = await Axios.get(
                 "http://localhost:5000/posts/getAllPosts"
             )
+            console.log(allPosts.data)
             SetCardsInfo(allPosts.data)
         }
         getAllPosts()
@@ -56,9 +57,9 @@ const Feed = () => {
                                         card.tools.map((tool,i) => (
                                             <ReactBootStrap.Badge style={{
                                                 'padding':'6px 10px',
-                                                'margin':'0 3px'}} 
+                                                'marginLeft':'7px'}} 
                                                 pill variant="dark">
-                                                {tool}
+                                                {tool.value}
                                             </ReactBootStrap.Badge>
                                             )
                                         )

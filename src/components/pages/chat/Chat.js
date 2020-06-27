@@ -17,6 +17,27 @@ const Chat = ({location}) => {
     const [pastMessages,setPastMessages] = useState(undefined)
     const ENDPOINT = 'localhost:5000'
 
+    const createSenderRoom = async (senderName,room) => {
+        const userActiveRooms = await Axios.post(
+            'http://localhost:5000/chat/getUserRooms',
+            {
+                user:senderName
+            }
+        )
+        console.log('userActiveRooms.data: ',userActiveRooms.data)
+        if(userActiveRooms.data.length === 0){
+            const response = await Axios.post(
+            'http://localhost:5000/chat/createSenderRoom',
+                {
+                    user:senderName,
+                    room:room,
+                    text:' '
+                }
+            )
+            console.log('response.data: ',response.data)
+        }
+    }
+
     const getPastMessages = async (room) => {
         try{
             const checkRes = await Axios.post(
@@ -27,7 +48,6 @@ const Chat = ({location}) => {
             )
 
             if (checkRes.data) setMessages(checkRes.data)
-            console.log('checkRes.data: ',checkRes.data)
         } catch (err) {
             console.log({err: err.response.data.msg})
         }
@@ -59,11 +79,12 @@ const Chat = ({location}) => {
                 setUsername(username)
                 setRoom(room)
                 await getPastMessages(room)
+                await createSenderRoom(room.slice(username.length+3),room)
 
+            
                 socket.emit('join',{username,room}, () => {
 
                 })
-
                 return () => {
                     socket.emit('disconnect')
 

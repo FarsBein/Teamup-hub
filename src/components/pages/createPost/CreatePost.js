@@ -5,6 +5,8 @@ import UserContext from '../../context/UserContext';
 import Axios from 'axios';
 import ErrorAlert from '../../Error/ErrorAlert.js'
 
+import Select, { components } from 'react-select';
+import {toolOptions} from './toolsOptions'
 
 const CreatePost = () => {
     const {userData} = useContext(UserContext)
@@ -17,6 +19,7 @@ const CreatePost = () => {
     const [errorMessage,setErrorMessage] = useState(undefined)
     const [image,setImage] = useState(undefined)
     const [imageUrl,setImageUrl] = useState(undefined)
+
 
     const createPost = async (e) => {
         e.preventDefault()
@@ -31,7 +34,6 @@ const CreatePost = () => {
                 image:imageUrl?imageUrl:'',
                 profileImage: userData.user.profileImage
         }
-        
         try {
             const savedPost = await Axios.post(
                 'http://localhost:5000/posts/createPost',
@@ -59,6 +61,15 @@ const CreatePost = () => {
             .catch((err) => console.log(data))
     }
 
+
+    const IndicatorsContainer = props => {
+        return (
+          <div style={{ background: toolOptions[2].color }}>
+            <components.IndicatorsContainer {...props} />
+          </div>
+        );
+      };
+
     return (
         <div className={'create-post-container'}>
             {toFeed || !userData.user  ? <Redirect to='/' />: null}
@@ -81,7 +92,7 @@ const CreatePost = () => {
                 <ReactBootStrap.Form.Group>
                     <ReactBootStrap.Form.File onChange={((e) => setImage(e.target.files[0]))}
                      id="exampleFormControlFile1" 
-                     label="Image (optional) *not working yet"/>
+                     label="Image (optional)"/>
                 </ReactBootStrap.Form.Group>
                 <ReactBootStrap.Form.Group controlId="exampleForm.ControlInput1">
                     <ReactBootStrap.Form.Label>Brief Description</ReactBootStrap.Form.Label>
@@ -92,9 +103,16 @@ const CreatePost = () => {
                     <ReactBootStrap.Form.Control onChange={(e) => SetFullDescription(e.target.value)} as="textarea" rows="3" />
                 </ReactBootStrap.Form.Group>
                 <ReactBootStrap.Form.Group controlId="exampleForm.ControlTextarea1">
-
+                    <ReactBootStrap.Form.Label>Tools Used</ReactBootStrap.Form.Label>
+                    <Select
+                        closeMenuOnSelect={false}
+                        components={{ IndicatorsContainer }}
+                        isMulti
+                        options={toolOptions}
+                        onChange={setTools}
+                    />
                 </ReactBootStrap.Form.Group>
-                <ReactBootStrap.Button onClick={createPost} variant="primary" type="submit">
+                <ReactBootStrap.Button onClick={createPost} variant="primary" type="submit" size="lg" block>
                             Create
                 </ReactBootStrap.Button>
             </ReactBootStrap.Form>

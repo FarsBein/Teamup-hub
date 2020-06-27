@@ -80,3 +80,21 @@
 
 .sender-message-text {
 }
+
+/* chatBoard ------------------- */
+
+.chatBoard-cards-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.cards-body {
+    display: flex;
+    align-items: center;
+}
+
+.chatBoard-profile-image {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+}

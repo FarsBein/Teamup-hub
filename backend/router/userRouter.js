@@ -124,6 +124,17 @@ router.post('/tokenIsValid', async(req,res) => {
     }
 })
 
+router.post('/getProfileImage', async(req,res) => {
+    try {
+        const {username} = req.body
+        const userInfo = await User.findOne({username})
+        res.json(userInfo.profileImage)
+
+    } catch(err){
+        res.status(500).json({err:err.message})
+    }
+})
+
 router.get('/', auth, async (req,res) => {
     try {
         const user = await User.findById(req.user)

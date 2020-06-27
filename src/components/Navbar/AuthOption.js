@@ -20,7 +20,7 @@ export default function AuthOption() {
         <div className='Register-Login'>
             {
                 userData.user ?
-                <div onClick={handleLogout} className={'links'}>Log out</div>:
+                <div onClick={handleLogout} className={'links'}><Link  className={'links'} to="/login">Log out</Link></div>:
                 <>
                     <Link style={{'paddingRight': '10px'}} className={'links'} to="/register">Register</Link>
                     <Link  className={'links'} to="/login">Log in</Link>                

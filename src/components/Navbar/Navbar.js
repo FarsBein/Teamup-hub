@@ -30,6 +30,7 @@ const Navbar = () => {
                 <ReactBootstrap.Navbar.Collapse id="basic-navbar-nav">
                     <ReactBootstrap.Nav className="mr-auto">
                     <ReactBootstrap.Nav.Link><Link className={'links'} to="/">Feed</Link></ReactBootstrap.Nav.Link>
+                    <ReactBootstrap.Nav.Link><Link className={'links'} to="/chatBoard">Chat Board</Link></ReactBootstrap.Nav.Link>
 
                     {   
                         userData.user ? // check for logged in user to show these options
@@ -40,11 +41,11 @@ const Navbar = () => {
                         null
                     }   
                     
-                    <ReactBootstrap.NavDropdown title="Catagories" id="basic-nav-dropdown">
+                    {/* <ReactBootstrap.NavDropdown title="Catagories" id="basic-nav-dropdown">
                         <ReactBootstrap.NavDropdown.Item>Projects</ReactBootstrap.NavDropdown.Item>
                         <ReactBootstrap.NavDropdown.Item>Gaming</ReactBootstrap.NavDropdown.Item>
                         <ReactBootstrap.NavDropdown.Item>school work</ReactBootstrap.NavDropdown.Item>
-                    </ReactBootstrap.NavDropdown>
+                    </ReactBootstrap.NavDropdown> */}
                     </ReactBootstrap.Nav>
                     <ReactBootstrap.Nav>
                         <AuthOption />

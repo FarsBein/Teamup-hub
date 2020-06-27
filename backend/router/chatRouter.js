@@ -5,7 +5,7 @@ const Chat = require("../models/chatModel.js")
 router.post('/addMessage', async (req,res) => {
     try{
         const {user,text,room} = req.body
-        
+
         if (!user||!text||!room||user==='admin'){ 
             res.status(400).json({msg:'not all required information are provided!'})
             return 
@@ -38,7 +38,7 @@ router.post('/getPastMessages', async (req,res) => {
 router.post('/getUserRooms', async (req,res) => {
     try{
         const {user} = req.body
-        const UserMessages = await Chat.find(user)
+        const UserMessages = await Chat.find({user:user})
         let uniqueRooms = [];
         for (var i = 0; i < UserMessages.length; i++) {
             uniqueRooms.push(UserMessages[i].room)
@@ -51,4 +51,23 @@ router.post('/getUserRooms', async (req,res) => {
     }
 })
 
+
+router.post('/createSenderRoom', async (req,res) => {
+    try{
+        const {user,room,text} = req.body
+        console.log(user,room,text)
+        if (!user||!text||!room){ 
+            res.status(400).json({msg:'createSenderRoom not all required information are provided!'})
+            return 
+        }
+        const newMessage = new Chat({user,room,text})
+
+        const savedMessage = await newMessage.save()
+
+        res.json(savedMessage)
+
+    } catch (err) {
+        res.json({err: err.message})
+    }
+})
 module.exports = router

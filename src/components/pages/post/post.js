@@ -38,7 +38,7 @@ const Post = ({location}) => {
                                 post.tools ? 
                                 post.tools.map((tool,i)=>(
                                             <ReactBootStrap.Badge style={{'padding':'10px', 'margin':'0 3px'}} pill variant="light">
-                                                {tool}
+                                                {tool.value}
                                             </ReactBootStrap.Badge>
                                         )
                                     ):
