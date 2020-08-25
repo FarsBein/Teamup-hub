@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "build": "cd client && npm run build",
+    "build": "cd client && npm run react-scripts build",
     "install-client": "cd client && npm install",
     "heroku-postbuild": "npm run install-client && npm run build"
   },
