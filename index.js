@@ -74,7 +74,10 @@ mongoose.connect(process.env.MONGODB_URI, {
 })
 
 // check heroku
-app.use(express.static('client/build'))
+if (app.use(express.static('client/build'))) {
+    console.log("client is built")
+}
+    
 
 
 
