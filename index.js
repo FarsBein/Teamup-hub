@@ -74,9 +74,8 @@ mongoose.connect(process.env.MONGODB_URI, {
 })
 
 // check heroku
-if (process.env.NODE_ENV === 'production'){
-    app.use(express.static('client/build'))
-}
+app.use(express.static('client/build'))
+
 
 
 // set up middleware router
