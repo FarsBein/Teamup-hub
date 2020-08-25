@@ -78,6 +78,7 @@ if (process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'))
 }
 
+
 // set up middleware router
 
 app.use(router)
