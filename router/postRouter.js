@@ -83,10 +83,8 @@ router.post('/updatePost', async (req,res)=> {
 router.delete('/deletePost', async (req,res)=> {
     try {
         const {id} = req.body
-        console.log('id:',id)
-        const deletedPost = await Post.findByIdAndDelete(id)
-        console.log('deletedPost:',deletedPost)
-        res.send(deletedPost)
+        await Post.findByIdAndDelete(id)
+        res.send("Post is deleted")
 
     } catch (err) {
         res.json({err: err.message})
