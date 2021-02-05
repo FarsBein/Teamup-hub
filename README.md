@@ -12,7 +12,7 @@ I had this idea ever since starting programming and trying to find to new develo
 - NodeJs
 - Bootstrap
 
-#### Important Lbraries
+#### Important Libraries
 - Socket.io
 - Node.bcrypt.js
 - Jsonwebtoken
