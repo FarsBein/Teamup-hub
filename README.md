@@ -12,6 +12,8 @@ I had this idea ever since starting programming and trying to find to new develo
 - NodeJs
 - Bootstrap
 
-#### Lbraries
+#### Important Lbraries
 - Socket.io
+- Node.bcrypt.js
+- Jsonwebtoken
 
